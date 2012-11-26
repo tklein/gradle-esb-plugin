@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = 'eu.schnuckelig.gradle'
+version = '0.1-SNAPSHOT'
+
+dependencies {
+    compile gradleApi()
+    groovy localGroovy()
+	compile 'javax.inject:javax.inject:1'
+
+	testCompile 'junit:junit:4.10'
+}
+
+// Work-around for the groovy compiler
+// cross-compile between Java and Groovy when there are references back and forth, 
+// the Groovy compiler has to handle compiling both Java and Groovy sources.
+sourceSets.main.java.srcDirs = [] // ie there's no stand-alone java source
+sourceSets.main.groovy.srcDir 'src/main/java' // ie include the 'java' dir as groovy source
+
+repositories {
+	mavenCentral()
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: uri('../repo'))
+		}
+	}
+}
+

@@ -13,10 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.schnuckelig.gradle.plugins.jboss
+package eu.schnuckelig.gradle.plugins
 
 import org.gradle.api.Project
 
+/**
+ * @author Thorsten Klein
+ *
+ */
 public class EsbPluginConvention {
 	/**
 	 * The name of the web application directory, relative to the project directory.

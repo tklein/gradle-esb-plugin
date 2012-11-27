@@ -1,7 +1,19 @@
-/**
- * 
+/*
+ * Copyright 2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package eu.schnuckelig.gradle.plugins.jboss
+package eu.schnuckelig.gradle.plugins
 
 import org.gradle.api.file.CopySpec
 import org.gradle.api.file.FileCollection
@@ -26,20 +38,14 @@ class Esb extends Jar {
         extension = ESB_EXTENSION
         // Add these as separate specs, so they are not affected by the changes to the main spec
         metaInf = copyAction.rootSpec.addChild().into('META-INF')
-		// Copy class files
+
+				// Copy class files
 		copyAction.rootSpec.into('') {
 			from {
 				def classpath = getClasspath()
 				classpath ? classpath.filter {File file -> file.isDirectory()} : []
 			}
 		}
-		
-//		copyAction.mainSpec.eachFile { FileCopyDetails details ->
-//			if (details.path.equalsIgnoreCase('META-INF/MANIFEST.MF')) {
-//				details.exclude()
-//			}
-//		}
-		
 		
 		// Copy jars
 		copyAction.rootSpec.into('') {

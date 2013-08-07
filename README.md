@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tklein/gradle-esb-plugin.png)](https://travis-ci.org/tklein/gradle-esb-plugin)
+
 # Gradle ESB Plugin! 
 ESB packaging similar to WAR or EAR
 

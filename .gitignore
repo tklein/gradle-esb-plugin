@@ -1,6 +1,13 @@
-.classpath
-.project
-.gradle
-.settings
-build
-bin
+*.class
+*~
+# Package Files #
+*.jar
+*.war
+*.ear
+*.esb
+/build
+/bin
+/.gradle
+/.settings
+/.classpath
+/.project

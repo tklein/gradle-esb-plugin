@@ -17,15 +17,11 @@ esbContentDirName = 'esbcontent'
 
 buildscript {
     repositories {
-		maven {
-            url uri('../repo')
-        }
-		mavenLocal()
 		mavenCentral()
     }
 
 	dependencies {
-		classpath 'eu.schnuckelig.gradle:gradle-esb-plugin:0.1-SNAPSHOT'
+		classpath 'eu.schnuckelig.gradle:gradle-esb-plugin:1.0'
 	}
 }
 

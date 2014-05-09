@@ -38,3 +38,6 @@ dependencies {
 
 # See Also #
 The [Gradle JAX-WS Plugin](https://github.com/tklein/gradle-jaxws-plugin)!
+
+# Contributors #
+Marco Köhler

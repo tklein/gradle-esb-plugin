@@ -17,12 +17,11 @@ package eu.schnuckelig.gradle.plugins
 
 import org.gradle.api.file.CopySpec
 import org.gradle.api.file.FileCollection
-import org.gradle.api.internal.file.copy.CopySpecImpl
-import org.gradle.api.file.FileCopyDetails
-import org.gradle.api.tasks.bundling.Jar
-import org.gradle.api.tasks.InputFile
+import org.gradle.api.internal.file.copy.DefaultCopySpec
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.bundling.Jar
+import org.gradle.util.ConfigureUtil
 
 /**
  * @author Thorsten Klein
@@ -32,23 +31,23 @@ class Esb extends Jar {
     public static final String ESB_EXTENSION = 'esb'
 
     private FileCollection classpath
-    private final CopySpecImpl metaInf
+    private final DefaultCopySpec metaInf
 
     Esb() {
         extension = ESB_EXTENSION
         // Add these as separate specs, so they are not affected by the changes to the main spec
-        metaInf = copyAction.rootSpec.addChild().into('META-INF')
+        metaInf = rootSpec.addChild().into('META-INF')
 
-				// Copy class files
-		copyAction.rootSpec.into('') {
+		// Copy class files
+		rootSpec.into('') {
 			from {
 				def classpath = getClasspath()
 				classpath ? classpath.filter {File file -> file.isDirectory()} : []
 			}
 		}
-		
+
 		// Copy jars
-		copyAction.rootSpec.into('') {
+		rootSpec.into('') {
             from {
                 def classpath = getClasspath()
                 classpath ? classpath.filter {File file -> file.isFile()} : []
@@ -80,7 +79,7 @@ class Esb extends Jar {
      *
      * @return The classpath. Returns an empty collection when there is no classpath to include in the ESB.
      */
-    @InputFiles 
+    @InputFiles
 	@Optional
     FileCollection getClasspath() {
         return classpath

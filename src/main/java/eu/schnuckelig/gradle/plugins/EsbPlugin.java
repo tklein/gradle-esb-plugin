@@ -83,7 +83,7 @@ public class EsbPlugin implements Plugin<Project> {
 			}
 		});
 
-		Esb esb = project.getTasks().add(ESB_TASK_NAME, Esb.class);
+		Esb esb = project.getTasks().create(ESB_TASK_NAME, Esb.class);
 		esb.setDescription("Generates an ESB archive with all the compiled classes, the ESB content and the libraries.");
 		esb.setGroup(BasePlugin.BUILD_GROUP);
 		project.getExtensions().getByType(DefaultArtifactPublicationSet.class)
@@ -94,13 +94,13 @@ public class EsbPlugin implements Plugin<Project> {
 	private void configureConfigurations(
 			ConfigurationContainer configurationContainer) {
 		Configuration provideCompileConfiguration = configurationContainer
-				.add(PROVIDED_COMPILE_CONFIGURATION_NAME)
+				.create(PROVIDED_COMPILE_CONFIGURATION_NAME)
 				.setVisible(false)
 				.setDescription(
 						"Additional compile classpath for libraries that should not be part of the ESB archive.");
 		
 		Configuration provideRuntimeConfiguration = configurationContainer
-				.add(PROVIDED_RUNTIME_CONFIGURATION_NAME)
+				.create(PROVIDED_RUNTIME_CONFIGURATION_NAME)
 				.setVisible(false)
 				.extendsFrom(provideCompileConfiguration)
 				.setDescription(
